@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StorePatientRequest;
+use App\Http\Resources\PatientResource;
 use App\Services\Patient\PatientService;
 
 class PatientController extends Controller
@@ -35,6 +36,6 @@ class PatientController extends Controller
 
     public function download()
     {
-
+        return PatientResource::collection($this->service->list());
     }
 }

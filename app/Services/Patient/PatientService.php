@@ -68,8 +68,12 @@ class PatientService
         return $patient;
     }
 
-    public function list()
+    public function list(): array
     {
-        return $this->cache->list();
+        if (!$list = $this->cache->list()) {
+            $list = $this->cache->revalidate();
+        }
+
+        return $list;
     }
 }
